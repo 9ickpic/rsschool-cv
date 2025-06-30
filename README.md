@@ -1,1 +1,1 @@
-![https://9ickpic.github.io/rsschool-cv/cv]
+![CV](https://9ickpic.github.io/rsschool-cv/cv)
