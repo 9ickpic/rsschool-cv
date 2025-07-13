@@ -265,7 +265,7 @@ header::before {
   justify-content: center;
 }
 
-.contact-cta::before {
+/* .contact-cta::before {
   content: "";
   position: absolute;
   top: 0;
@@ -279,11 +279,11 @@ header::before {
     transparent
   );
   transition: left 0.5s ease;
-}
+} */
 
-.contact-cta:hover::before {
+/* .contact-cta:hover::before {
   left: 100%;
-}
+} */
 
 .contact-cta:hover {
   border-color: var(--secondary-accent);
@@ -672,4 +672,24 @@ code {
 }
 .section:nth-child(5) {
   animation-delay: 0.4s;
+}
+
+.language-switcher {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.language-switcher button {
+  padding: 0.5rem 1rem;
+  background: var(--bg-alt);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-switcher button:hover {
+  border-color: var(--secondary-accent);
+  box-shadow: var(--glow-hover);
 }
