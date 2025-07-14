@@ -263,6 +263,7 @@ header::before {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
 /* .contact-cta::before {
@@ -288,6 +289,10 @@ header::before {
 .contact-cta:hover {
   border-color: var(--secondary-accent);
   box-shadow: var(--glow-hover);
+
+  h2 {
+    color: var(--secondary-accent);
+  }
 }
 
 .contact-cta h2 {
@@ -322,12 +327,40 @@ header::before {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+.contact-links a::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 180px;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(255, 0, 255, 1) 0%,
+    rgba(255, 0, 255, 0.08) 40%,
+    transparent 100%
+  );
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  filter: blur(24px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .contact-links a:hover {
+  animation: flicker-btn 2s forwards ease-in-out;
   border-color: var(--secondary-accent);
-  background: rgba(0, 180, 218, 0.1);
   color: var(--secondary-accent);
+}
+
+.contact-links a:hover::after {
+  animation: flicker-shadow 2s forwards ease-in-out;
 }
 
 .contact-links svg {
@@ -692,4 +725,64 @@ code {
 .language-switcher button:hover {
   border-color: var(--secondary-accent);
   box-shadow: var(--glow-hover);
+}
+
+@keyframes flicker-btn {
+  0% {
+    border-color: rgba(255, 0, 255, 0);
+    box-shadow: none;
+  }
+
+  10% {
+    border-color: rgba(255, 0, 255, 0.3);
+    box-shadow: 0 0 3px rgba(255, 0, 255, 0.1);
+  }
+
+  20% {
+    border-color: rgba(255, 0, 255, 0.6);
+    box-shadow: 0 0 6px rgba(255, 0, 255, 0.3);
+  }
+
+  25% {
+    border-color: rgba(255, 0, 255, 0.1);
+    box-shadow: none;
+  }
+
+  27% {
+    border-color: var(--secondary-accent);
+    box-shadow: var(--glow-hover-cta), inset var(--glow-hover-cta);
+  }
+
+  35%,
+  100% {
+    border-color: var(--secondary-accent);
+    box-shadow: var(--glow-hover-cta), inset var(--glow-hover-cta);
+  }
+}
+
+@keyframes flicker-shadow {
+  0% {
+    opacity: 0.1;
+  }
+
+  10% {
+    opacity: 0.25;
+  }
+
+  20% {
+    opacity: 0.4;
+  }
+
+  25% {
+    opacity: 0.05;
+  }
+
+  27% {
+    opacity: 0.4;
+  }
+
+  35%,
+  100% {
+    opacity: 1;
+  }
 }
